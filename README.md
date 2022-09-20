@@ -1,10 +1,12 @@
-MICROSERVIZI DEMO
+# MICROSERVIZI DEMO
 
-scopo del documento è realizzare una serie di microservizi in java con spring boot 
+lo scopo del documento è
 
-creare le relative immagini docker
+#### - realizzare una serie di microservizi in java con spring boot 
 
-pubblicare le immagini docker in un orchestratore di tipo kubernetes il questo caso utilizzeremo OpenShit di RedHat
+#### - creare le relative immagini docker
 
-per la compilazione e pubblicazione delle immagini sarà utilizzato il Jenkins
+#### - pubblicare le immagini docker in un orchestratore di tipo kubernetes il questo caso utilizzeremo OpenShit di RedHat
+
+#### - per la compilazione e pubblicazione delle immagini sarà utilizzato il Jenkins
 
