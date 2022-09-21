@@ -38,11 +38,11 @@ il secondo microservizio esegue solo operazioni di lettura sui dati inseriti del
 
 ### docker
 
-TAG write_0.0.1-SNAPSHOT
+microservizio patientWrite
 
 docker pull nturri1306/csa:write_0.0.1-SNAPSHOT
 
-TAG naming-server_0.0.1-SNAPSHOT
+microservizio namingServer 
 
 docker pull nturri1306/csa:naming-server_0.0.1-SNAPSHOT
 
