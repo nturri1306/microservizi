@@ -33,6 +33,10 @@ ci sarà un servizio che si occuperà in background della scrittura dei dati sul
 
 il secondo microservizio esegue solo operazioni di lettura sui dati inseriti del paziente direttamente sul db
 
+è presente un terzo microservizio di naming che usa le librerie di netflix eureka server il suo compito e registrare i microservizi e monitorare il loro stato
+
+
+
 
 
 
