@@ -101,7 +101,9 @@ portarsi sulla cartella del progetto del microservizio spring e digitare
 
 mvn spring-boot:build
 
+![This is an image](https://github.com/nturri1306/microservizi/blob/main/cli1.png)
 
+verrà creata immagine del microservizio relativo con il nome specificato nel tag <name> dentro tag <image> 
 
 docker
 
