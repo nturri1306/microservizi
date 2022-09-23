@@ -116,22 +116,35 @@ la stessa procedura dovrà essere ripetuta per eventuali altri microservizi
 è un semplice microservizio di test che contiene un solo metodo per scrivere su un dabatase di h2 di test
 
 da notare il file pom.xml la presenza del eureka client che serve per la registrazione del microservizio nel server di naming
-che verrà specificato nel file application.properties
-
-nel caso si lavora sul cloud è opportuno utlizzare delle variabili di ambiente
-
-eureka.client.serviceUrl.defaultZone=http://{nameserver}:8761/eureka
-
-
-
-	        <dependency>
-			<groupId>org.springframework.cloud</groupId>
+ 
+ ```
+ <dependency>
+	<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+```
+
+che verrà specificato nel file application.properties
+
+
+nel caso si lavora sul cloud è opportuno utlizzare delle variabili di ambiente
+
+eureka.client.serviceUrl.defaultZone=${eurekaserver}
+
+per dare il nome al servizio verrà utilizzato
+
+spring.application.name=patientwrite-service
+
+
+da notare quando sia il microservizio del patient che del naming sono attivi possiamo controllare sul naming la lista dei servizi registrati
+
+
+
+![This is an image](https://github.com/nturri1306/microservizi/blob/main/cli3.png)	       
 		
 		
 
