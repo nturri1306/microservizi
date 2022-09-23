@@ -133,19 +133,21 @@ che verrà specificato nel file application.properties
 
 nel caso si lavora sul cloud è opportuno utlizzare delle variabili di ambiente
 
+```
 eureka.client.serviceUrl.defaultZone=${eurekaserver}
-
+```
 per dare il nome al servizio verrà utilizzato
 
+```
 spring.application.name=patientwrite-service
-
+```
 
 da notare quando sia il microservizio del patient che del naming sono attivi possiamo controllare sul naming la lista dei servizi registrati
 
 
-
+```
 ![This is an image](https://github.com/nturri1306/microservizi/blob/main/cli3.png)	       
-		
+```		
 		
 
 
