@@ -103,7 +103,11 @@ mvn spring-boot:build
 
 ![This is an image](https://github.com/nturri1306/microservizi/blob/main/cli1.png)
 
-verrà creata immagine del microservizio relativo con il nome specificato nel tag <name> dentro tag <image> 
+verrà creata immagine del microservizio relativo con il nome specificato nel tag del pom
+
+con il comando "docker images" da shell del computer possiamo vedere l'immagine creata presente
+
+![This is an image](https://github.com/nturri1306/microservizi/blob/main/cli2.png)
 
 docker
 
