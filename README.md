@@ -145,11 +145,9 @@ spring.application.name=patientwrite-service
 da notare quando sia il microservizio del patient che del naming sono attivi possiamo controllare sul naming la lista dei servizi registrati
 
 
-```
 ![This is an image](https://github.com/nturri1306/microservizi/blob/main/cli3.png)	       
-```		
 		
-
+		
 
 docker
 
