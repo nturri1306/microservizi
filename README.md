@@ -95,6 +95,14 @@ nel file pom.xml all'interno del tag build sono presenti i tag per la creazione 
 			</plugin>
 ```
 
+per creare la relativa immagine docker bisogna avere il docker-engine (https://docs.docker.com/engine/) installato sulla macchina di sviluppo
+
+portarsi sulla cartella del progetto del microservizio spring e digitare
+
+mvn spring-boot:build
+
+
+
 docker
 
 microservizio patientWrite
