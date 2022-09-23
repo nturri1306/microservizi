@@ -11,43 +11,95 @@ lo scopo del documento è
 #### - per la compilazione e pubblicazione delle immagini sarà utilizzato il Jenkins
 
 
+ scopo del documento è
+- realizzare una serie di Microservizi in java con Spring Boot
+- creare le relative immagini docker
+- pubblicare le immagini docker in un orchestratore di tipo kubernetes (in questo caso utilizzeremo OpenShit di RedHat)
+- per la compilazione e pubblicazione delle immagini sarà utilizzato il Jenkins
 
 
+1. Microservizi
+per la demo verrano costruiti 2 microservizi di tipo Rest Api con  Spring Boot e Spring Cloud. 
+il primo microservizio PatientWrite serve per registrare i dati generici di un paziente
+il secondo microservizio NamingService è un servizio di naming che usa Eurekaserver
+
+### Cos'è Eureka Server?
+Eureka Server è la scoperta di servizi per i tuoi microservizi. 
+Le applicazioni client possono registrarsi automaticamente con esso e altri microservizi possono contattare Eureka Server per trovare i microservizi di cui hanno bisogno.
 
 
+### NamingService
 
-### 1. Microservizi
+```
+package it.csa.naming;
 
-per la demo verrano costruiti 2 microservizi di tipo Rest Api con Spring Boot che utilizzeranno un pattern di tipo CQRS / Event Sourcing
-
-il primo serve per registrare i dati di un paziente 
-
-il microservizio non scrive direttamente sul db Mysql ma su una piattaforma che gestisce i dati in tempo reale Apache Kafka
-
-una copia di backup verrà anche scritta su un database di tipo MongoDB per una maggiore coerenza dei dati ed un eventuale recupero 
-
-questo tipo di struttura permette di inviare migliaia di chiamate verso un nodo senza avere nessun tipo di problema di rallentamento
-
-ci sarà un servizio che si occuperà in background della scrittura dei dati sul db MySql con JPA
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 
-il secondo microservizio esegue solo operazioni di lettura sui dati inseriti del paziente direttamente sul db
+@EnableEurekaServer
+@SpringBootApplication
+public class NamingServerApplication {
 
-è presente un terzo microservizio di naming che usa le librerie di netflix eureka server il suo compito e registrare i microservizi e monitorare il loro stato
+	public static void main(String[] args) {
+		SpringApplication.run(NamingServerApplication.class, args);
+	}
+
+}
+
+```
+application.properties
 
 
+```
+spring.application.name=naming-server
+server.port=8761
+#i parametri sotto servono ad evitare errori quando il servizio è attivo
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+eureka.server.enableSelfPreservation=false
+```
 
+8761 è una porta di default per i server di naming
 
+nel pom.xml
 
+sono presenti queste 2 dipendenze che servono pe il funzionamento di eurekaserver
+```
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+```
 
-### docker
+nel file pom.xml all'interno del tag build sono presenti i tag per la creazione dei file docker
+
+```
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>it.csa.naming/${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>
+			</plugin>
+```
+
+docker
 
 microservizio patientWrite
-
 docker pull nturri1306/csa:write_0.0.1-SNAPSHOT
-
-microservizio namingServer 
-
+microservizio namingServer
 docker pull nturri1306/csa:naming-server_0.0.1-SNAPSHOT
 
 
